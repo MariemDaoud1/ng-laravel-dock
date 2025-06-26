@@ -28,7 +28,7 @@ export class Create {
       Title: this.title,
       description: this.description
     }
-    this.postService.createPosts(input).subscribe(result=>{ alert('Post created successfully!');    this.router.navigate(['']);}, error => {
+    this.postService.createPosts(input).subscribe(result=>{ alert('Post created successfully!');    this.router.navigate(['post']);}, error => {
       alert('Failed to create post. Please try again.');
    
 
