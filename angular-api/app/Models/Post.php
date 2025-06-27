@@ -9,5 +9,5 @@ class Post extends Model
     protected $table = 'posts';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    protected $fillable = ['Title', 'description'];
+    protected $fillable = ['Title', 'description', 'image'];
 }

@@ -30,4 +30,7 @@ export class PostService {
   deletePost(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiURL}/${id}`);
   }
+  uploadImage(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiURL}/upload-image`, formData);
+  }
 }
