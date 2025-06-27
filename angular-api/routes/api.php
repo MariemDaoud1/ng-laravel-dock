@@ -8,3 +8,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 Route::resource("/post", PostController::class);
+Route::post('/post/upload-image', [PostController::class, 'uploadImage']);
