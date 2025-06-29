@@ -2,14 +2,11 @@
     <h3 class="card-header p-3">CRUD App</h3>
     <div class="card-body">
         <div class="mb-1">
-            <form (submit)="onSubmit()">
             <a class="btn btn-success" [routerLink]="['/post/create']">Create Post</a>
         <div class="d-flex flex-wrap gap-3">
         @for (post of posts ; track post.id) {
             <div class="card" style="width: 18rem;">
             <img [src]="post.image" class="card-img-top" alt="Post Image">
-            <input type="file" (change)="onFileSelected($event,post.id!)" accept="image/*" />
-            <button type="submit">Upload Image</button>
             <div class="card-body">
             <h5 class="card-title">{{post.Title}}</h5>
             <p class="card-text">{{post.id}} . {{post.description}}</p>
@@ -17,7 +14,6 @@
             </div>
             </div>}
         </div>
-            </form>
     </div>
     </div>
 </div>

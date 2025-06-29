@@ -17,6 +17,7 @@ export class Show {
   description='';
   id:number=0;
   posts:Post[]=[];
+  image="";
 
   constructor(private postService: PostService, private router: Router,private route: ActivatedRoute) {}
 
@@ -25,6 +26,7 @@ export class Show {
       this.postService.findPostById(Number(this.id)).subscribe((post: Post) => {
         this.title = post.Title;
         this.description = post.description;
+        this.image= post.image ?? ''; // Assuming the Post model has an 'image' property
       });
     }
 
@@ -33,10 +35,11 @@ export class Show {
       this.postService.deletePost(id).subscribe(() => {
         this.posts = this.posts.filter(post => post.id !== id);
         alert('Post deleted successfully!');
+        this.router.navigate(['post']);
       }, error => {
         alert('Failed to delete post. Please try again.');
       });
-  }
+    }
   }
 
 }

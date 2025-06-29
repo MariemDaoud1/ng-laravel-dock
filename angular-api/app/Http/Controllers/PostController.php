@@ -50,11 +50,12 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all()->map(function ($post) {
+            $imagePath = $post->image ? asset('storage/' . $post->image) : null;
             return [
                 'id' => $post->id,
                 'Title' => $post->Title,
                 'description' => $post->description,
-                'image' => $post->image ? asset('storage/' . $post->image) : null,
+                'image' => $imagePath,
             ];
         });
 

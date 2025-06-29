@@ -33,4 +33,5 @@ export class PostService {
   uploadImage(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiURL}/upload-image`, formData);
   }
+  
 }

@@ -13,9 +13,11 @@
             <label for="title">Description : </label>
             <textarea [(ngModel)]="description" type="text" name="description" id="description" class="form-control" ></textarea>
         </div>
+        <div class="mt-2">  
+            <img [src]="image" class="card-img-top" alt="Post Image">
+        </div>
             <a class="btn btn-primary btn-sm m-1" [routerLink]="['/post',id,'edit']">Edit</a>
             <button (click)="deletePost(id)" class="btn btn-danger btn-sm m-1">Delete</button>
-
         </form>
     </div>
 </div>

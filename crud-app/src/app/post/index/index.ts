@@ -12,51 +12,20 @@ import { FormGroup, FormsModule } from '@angular/forms';
 })
 export class Index {
   posts:Post[]=[];
-  selectedFile: File | null = null;
-  uploadPostId: number | null = null; // Tracks the post ID for the upload
-  
 
-  constructor(private postService: PostService, private http: HttpClient, private router: Router){}
+constructor(private postService: PostService, private http: HttpClient, private router: Router){}
 
-  ngOnInit(){
-    this.postService.getPosts().subscribe((data:Post[])=>{
-      this.posts = data;
-    });
+ngOnInit() {
+  console.log('Index component initialized');
+  this.postService.getPosts().subscribe(
+    (data: Post[]) => {
+      this.posts = data; // Assign the fetched posts to the component's posts array
+      console.log('Posts fetched:', this.posts); // Log the data for verification
+    },
+    (error) => {
+      console.error('Error fetching posts:', error); // Log any errors
     }
-    
-    onFileSelected(event: Event,postId: number) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files?.length) {
-      this.selectedFile = input.files[0];
-      this.uploadPostId=postId;
-    }
-  }
-  onSubmit() {
-    if (!this.selectedFile || this.uploadPostId === null) {
-      alert('Please select a file and a post to upload.');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('image', this.selectedFile);
-    formData.append('id', this.uploadPostId.toString());
-
-    this.postService.uploadImage(formData).subscribe(
-      (response) => {
-        const updatedPost = this.posts.find(p => p.id === this.uploadPostId);
-        if (updatedPost && response?.data?.image_url) {
-        updatedPost.image = response.data.image_url;
-        }
-        this.selectedFile = null; // Reset the selected file
-        this.uploadPostId = null; // Reset the post ID
-        this.router.navigate(['post']);
-        alert('Image uploaded successfully!');
-      },
-      (error) => {
-        console.error('Error uploading image:', error);
-        alert('Failed to upload image. Please try again.');
-      }
-    );
-  }
+  );
+}
   
 }
