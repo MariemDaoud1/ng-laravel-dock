@@ -96,6 +96,11 @@ class PostController extends Controller
             return response()->json([
                 'data' => $post,
             ], 201);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle validation errors with status 422
+            return response()->json([
+                'errors' => $e->errors()
+            ], 422);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Failed to create post: ' . $e->getMessage()

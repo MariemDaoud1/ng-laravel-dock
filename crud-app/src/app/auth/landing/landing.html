@@ -1,0 +1,140 @@
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo">Track <span style="color:#2563EB">IT</span></a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+       <li class="btn-group">
+  <a class="btn btn-primary get-started-btn" [routerLink]="['/register']" style="color: white;">Get Started</a>
+  <a type="button" class="btn btn-outline-primary" [routerLink]="['/login']" style="outline: auto;">Login</a>
+
+</li>
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Smarter Asset Management for IT & Beyond</h1>
+        <p class="subtitle">
+          Track IT helps you manage equipment ownership, image documentation, and usage logs — all in one place.
+        </p>
+
+        <div class="benefits">
+          <div class="benefit-item"><i class="fas fa-check-circle"></i> Assign assets to users or departments</div>
+          <div class="benefit-item"><i class="fas fa-check-circle"></i> Upload images for asset proof</div>
+          <div class="benefit-item"><i class="fas fa-check-circle"></i> View full change history per asset</div>
+        </div>
+
+        <div class="hero-buttons">
+          <a class="btn btn-primary" [routerLink]="['/register']">Try Track IT</a>
+          <a class="btn btn-secondary" href="#features">Learn More</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <div class="mockup">
+          <div class="mockup-content">
+            <i class="fas fa-desktop" style="font-size: 4rem; color: #2563EB; margin-bottom: 1rem;"></i>
+            <div>Track IT Dashboard</div>
+            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Live status · Ownership · Photos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+    <h2 class="section-title">What Makes Track IT Different?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-camera"></i></div>
+        <h3>Image Uploads</h3>
+        <p>Attach photos to document condition, delivery, or return status of each asset.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-qrcode"></i></div>
+        <h3>QR Code Access</h3>
+        <p>Each asset has a unique QR code to quickly retrieve its data from any device.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-user-tag"></i></div>
+        <h3>User Assignment</h3>
+        <p>Assign equipment to users or departments to track ownership and responsibility.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-history"></i></div>
+        <h3>Full Activity Logs</h3>
+        <p>See who added, updated, or returned an item with a built-in timeline system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <h2 class="section-title">Transparent Pricing</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <div class="price">$0<span class="price-period">/month</span></div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Up to 100 assets</li>
+          <li><i class="fas fa-check"></i> Image + QR tracking</li>
+          <li><i class="fas fa-check"></i> View + Assign only</li>
+          <li><i class="fas fa-check"></i> Community support</li>
+        </ul>
+        <a class="btn btn-primary">Get Started</a>
+      </div>
+
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <h3>Pro</h3>
+        <div class="price">$59<span class="price-period">/month</span></div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Up to 3000 assets</li>
+          <li><i class="fas fa-check"></i> Timeline history & logs</li>
+          <li><i class="fas fa-check"></i> User roles & permissions</li>
+          <li><i class="fas fa-check"></i> Priority support</li>
+        </ul>
+        <a class="btn btn-primary">Try Pro</a>
+      </div>
+
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Unlimited assets</li>
+          <li><i class="fas fa-check"></i> Custom integrations</li>
+          <li><i class="fas fa-check"></i> On-premise support</li>
+          <li><i class="fas fa-check"></i> Dedicated engineer</li>
+        </ul>
+        <a class="btn btn-primary">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Stay Organized, Save Time, Track Better</h2>
+    <p>Track IT simplifies how teams track their tools and technology. Try it free, no credit card needed.</p>
+    <a class="btn btn-white" [routerLink]="['/register]">Start Now</a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>&copy; 2025 Track IT. Built using Laravel + Angular.</p>
+    </div>
+  </div>
+</footer>

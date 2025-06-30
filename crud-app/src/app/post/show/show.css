@@ -1,0 +1,65 @@
+.product-info-section {
+  background-color: #1e293b; /* dark slate */
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+
+/* Card header styling */
+.product-info-section .card-header {
+  background-color: #1e293b;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 12px 12px 0 0;
+  border-bottom: none;
+}
+
+/* Labels */
+.product-info-section label {
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+/* Inputs and textarea */
+.product-info-section .form-control {
+  background-color: #334155;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Buttons */
+.product-info-section .btn-success {
+  background-color: #2563eb;
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.product-info-section .btn-primary {
+  background-color: #3b82f6;
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.product-info-section .btn-danger {
+  background-color: #ef4444;
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.product-info-section .btn:hover {
+  opacity: 0.9;
+}
+
+/* Image preview */
+.product-info-section img {
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  object-fit: cover;
+}

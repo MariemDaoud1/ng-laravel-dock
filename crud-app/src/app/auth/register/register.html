@@ -1,0 +1,55 @@
+<div class="register-container">
+  <h2>Register</h2>
+
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <input
+      name="name"
+      [(ngModel)]="name"
+      #nameModel="ngModel"
+      required
+      maxlength="25"
+      type="text"
+      placeholder="Name"
+    />
+    <p [hidden]="nameModel.valid || !formTouched">Name is required</p>
+
+    <input
+      name="email"
+      [(ngModel)]="email"
+      #emailModel="ngModel"
+      required
+      email
+      maxlength="255"
+      type="email"
+      placeholder="Email"
+    />
+    <p [hidden]="emailModel.valid || !formTouched">Valid email is required</p>
+
+    <input
+      name="password"
+      [(ngModel)]="password"
+      #passwordModel="ngModel"
+      required
+      minlength="8"
+      type="password"
+      placeholder="Password"
+    />
+    <p [hidden]="passwordModel.valid || !formTouched">Minimum 8 characters</p>
+
+    <input
+      name="confirm_password"
+      [(ngModel)]="confirm_password"
+      #confirmPasswordModel="ngModel"
+      required
+      type="password"
+      placeholder="Confirm Password"
+    />
+    <p [hidden]="password === confirm_password || !formTouched">Passwords must match</p>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div class="error-box" [hidden]="serverErrors.length === 0">
+    <p *ngFor="let error of serverErrors">{{ error }}</p>
+  </div>
+</div>

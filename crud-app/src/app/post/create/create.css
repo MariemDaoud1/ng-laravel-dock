@@ -1,0 +1,80 @@
+/* Container spacing */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #3f65cc;  /* path relative to /src/assets/ */
+  background-size: cover;       /* cover entire container */
+  background-position: center;  /* center image */
+  background-repeat: no-repeat;
+  padding: 3rem;                /* add padding so content is not on edges */
+  border-radius: 1rem;          /* round container corners */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* subtle shadow */
+  color: #fff;                  /* white text for contrast */
+}
+
+
+/* Card style */
+.card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Form Labels */
+.form-label {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Inputs and Textareas */
+.form-control {
+  border-radius: 0.75rem;
+  border: 1px solid #dcdcdc;
+  box-shadow: none;
+  transition: border 0.3s ease;
+  padding: 0.75rem 1rem;
+}
+
+.form-control:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 0.15rem rgba(37, 99, 235, 0.15);
+}
+
+/* Submit Button */
+.btn-primary {
+  background-color: #2563eb;
+  border-color: #2563eb;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Outline Button (Back) */
+.btn-outline-primary {
+  border-color: #2563eb;
+  color: #2563eb;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.btn-outline-primary:hover {
+  background-color: #2563eb;
+  color: white;
+}
+
+/* Error alert */
+.alert-danger {
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Button icon spacing */
+.btn i {
+  margin-right: 6px;
+}

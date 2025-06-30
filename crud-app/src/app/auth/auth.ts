@@ -7,8 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class Auth {
   private apiURL ="http://localhost:8000/api";
+  private tokenkey='auth_token';
 
   constructor(private http: HttpClient) {}
+
+  
+  CreateUser(user: any): Observable<any> {
+    return this.http.post(`${this.apiURL}/register`, user);
+  }
+
 
   UserRegister(user: any): Observable<any> {
     return this.http.post(`${this.apiURL}/register`, user);
@@ -26,5 +33,19 @@ export class Auth {
     return this.http.get(`${this.apiURL}/user`);
   }
 
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenkey);
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenkey, token);}
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
+
+  removeToken(): void {
+    localStorage.removeItem(this.tokenkey);
+  }
 
 }

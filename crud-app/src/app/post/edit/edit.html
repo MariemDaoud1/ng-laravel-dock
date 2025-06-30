@@ -1,28 +1,58 @@
-<div class="card mt-5">
-    <h3 class="card-header p-3">Edit Product</h3>
-    <div class="card-body">
-        <div class="mb-1">
-            <a class="btn btn-success" [routerLink]="['/post']">Back</a>
-        </div>
-        <form (ngSubmit)="submit()">
-        <div class="mt-2">
-            <label for="title">Product : </label>
-            <input [(ngModel)]="title" type="text" name="title" id="title" class="form-control" />
-        </div>
-        <div class="mt-2">
-            <label for="title">Description : </label>
-            <textarea [(ngModel)]="description" type="text" name="description" id="description" class="form-control" ></textarea>
-        </div>
-        <form (submit)="onSubmit()">
-        <div class="mt-2">  
-            <img [src]="image" class="card-img-top" alt="Post Image">
-            <input type="file" (change)="onFileSelected($event,id!)" accept="image/*" />
-            <button type="submit">Upload Image</button>
-        </div>
-        </form>
-        <div class="mt-2">
-            <button class="btn btn-success" type="ngSubmit">Edit Product</button>
-        </div>
-        </form>
+<div class="product-info-section card mt-5">
+  <h3 class="card-header p-3">Asset infos</h3>
+  <div class="card-body">
+    <div class="mb-3">
+      <a class="btn btn-success" [routerLink]="['/post']">← Back</a>
     </div>
+
+    <form (submit)="onSubmit()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Asset:</label>
+        <input
+          [(ngModel)]="title"
+          type="text"
+          name="title"
+          id="title"
+          class="form-control"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea
+          [(ngModel)]="description"
+          type="text"
+          name="description"
+          id="description"
+          class="form-control"
+        ></textarea>
+      </div>
+
+      <div class="mb-4 text-center">
+        <img
+          [src]="image"
+          class="img-fluid rounded shadow"
+          alt="Post Image"
+          style="max-height: 300px;"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Update Image:</label>
+        <input
+          type="file"
+          id="image"
+          (change)="onFileSelected($event,id!)"
+          class="form-control"
+        /><button type="submit">Upload Image</button>
+      </div>
+    </form>
+    <form (ngSubmit)="submit()">
+      <div class="d-flex gap-3">
+        <button type="ngSubmit"
+          class="btn btn-primary btn-sm px-4"
+          >Update Asset</button
+        >
+      </div>
+    </form>
+  </div>
 </div>
