@@ -11,6 +11,11 @@ export class Auth {
 
   constructor(private http: HttpClient) {}
 
+  getAuthHeaders() {
+  return {
+    Authorization: `Bearer ${this.getToken()}`
+  };
+}
   
   CreateUser(user: any): Observable<any> {
     return this.http.post(`${this.apiURL}/register`, user);
@@ -25,13 +30,18 @@ export class Auth {
     return this.http.post(`${this.apiURL}/login`, user);
   }
 
-  UserLogout(): Observable<any> {
-    return this.http.post(`${this.apiURL}/logout`, {});
-  }
+  UserLogout() {
+  this.removeToken(); // Correctly removes 'auth_token'
+  localStorage.removeItem('user'); // Optional
+}
 
   getUser(): Observable<any> {
-    return this.http.get(`${this.apiURL}/user`);
-  }
+  return this.http.get(`${this.apiURL}/user`, {
+    headers: {
+      Authorization: `Bearer ${this.getToken()}`
+    }
+  });
+}
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenkey);

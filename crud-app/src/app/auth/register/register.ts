@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../auth';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { errorContext } from 'rxjs/internal/util/errorContext';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterModule],
   templateUrl: './register.html',
   styleUrls: ['./register.css']
 })
@@ -20,7 +21,7 @@ export class RegisterComponent {
   serverErrors: string[] = [];
   formTouched = false;
 
-  constructor(private authService: Auth,private router:Router) {}
+  constructor(private authService: Auth,private router:Router,private http:HttpClient) {}
 
   onSubmit(form: any) {
     this.formTouched = true;
@@ -31,7 +32,8 @@ export class RegisterComponent {
         name: this.name,
         email: this.email,
         password: this.password,
-        confirm_password: this.confirm_password
+        confirm_password: this.confirm_password,
+        error: ''
       };
 
       this.authService.UserRegister(userData).subscribe({
@@ -39,7 +41,7 @@ export class RegisterComponent {
           alert(res.message || 'Registration successful!');
           form.resetForm();
           this.formTouched = false;
-          this.router.navigate(['/login']); // Navigate to login page after successful registration
+          this.router.navigate(['']); // Navigate to login page after successful registration
         },
         error: (err) => {
           if (err.error?.errors) {

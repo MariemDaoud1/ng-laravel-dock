@@ -4,6 +4,7 @@ import { PostService } from '../post-service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormsModule } from '@angular/forms';
+import { Auth } from '../../auth/auth';
 @Component({
   selector: 'app-index',
   imports: [RouterModule,FormsModule],
@@ -13,7 +14,7 @@ import { FormGroup, FormsModule } from '@angular/forms';
 export class Index {
   posts:Post[]=[];
 
-constructor(private postService: PostService, private http: HttpClient, private router: Router){}
+constructor(private postService: PostService,private AuthService: Auth, private http: HttpClient, private router: Router){}
 
 ngOnInit() {
   console.log('Index component initialized');
@@ -26,6 +27,11 @@ ngOnInit() {
       console.error('Error fetching posts:', error); // Log any errors
     }
   );
+}
+
+logout(){
+  this.AuthService.UserLogout();
+  this.router.navigate(['/login']);
 }
   
 }

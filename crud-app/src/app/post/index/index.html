@@ -4,10 +4,13 @@
       <h2>Track <span class="highlight">IT</span></h2>
     </div>
     <div class="profile mb-4 text-center">
-      <img src="assets/profile.jpg" alt="Profile Picture" class="profile-pic mb-2" />
+      <img alt="Profile Picture" class="profile-pic mb-2" />
       <h3 class="username mb-0">John Doe</h3>
     </div>
     <a class="btn btn-primary btn-add w-100" [routerLink]="['/post/create']">Add Asset</a>
+    <a class="btn btn-outline-danger btn-logout w-100 mt-3" (click)="logout()">
+  <i class="fas fa-sign-out-alt me-2"></i> Logout
+</a>
   </aside>
 
   <section class="assets-section py-5">

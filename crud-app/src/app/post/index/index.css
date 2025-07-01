@@ -190,3 +190,14 @@
     padding: 1rem;
   }
 }
+.btn-logout {
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  background-color: transparent;
+  transition: 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #dc3545;
+  color: white;
+}

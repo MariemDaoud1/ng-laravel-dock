@@ -1,55 +1,55 @@
-<div class="register-container">
-  <h2>Register</h2>
+<section class="login-section">
+  <div class="container">
+    <div class="login-wrapper">
+      <div class="login-box">
+        <div class="login-left">
+          <h2>Welcome</h2>
+          <p>Please sign up to begin tracking your IT assets.</p>
+          <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input name="name" [(ngModel)]="name" #nameModel="ngModel" required maxlength="25" type="text" placeholder="Name" />
+              <p [hidden]="nameModel.valid || !formTouched" style="color:red;font-size: 0.9rem;margin-top: 0.5rem;">Name is required</p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input name="email"[(ngModel)]="email" #emailModel="ngModel" required email  maxlength="255"  type="email"  placeholder="Email" />
+              <p [hidden]="emailModel.valid || !formTouched" style="color:red;font-size: 0.9rem;margin-top: 0.5rem;">Valid email is required</p>
+            </div>
 
-  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-    <input
-      name="name"
-      [(ngModel)]="name"
-      #nameModel="ngModel"
-      required
-      maxlength="25"
-      type="text"
-      placeholder="Name"
-    />
-    <p [hidden]="nameModel.valid || !formTouched">Name is required</p>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input name="password" [(ngModel)]="password" #passwordModel="ngModel" minlength="8" type="password" placeholder="Password"  />
+              <p [hidden]="passwordModel.valid || !formTouched" style="color:red;font-size: 0.9rem;margin-top: 0.5rem;">Password must be at least 8 characters</p>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input name="confirm_password" [(ngModel)]="confirm_password" #confirmPasswordModel="ngModel" type="password" placeholder="Confirm Password" />
+              <p [hidden]="confirmPasswordModel.valid || !formTouched" style="color:red;font-size: 0.9rem;margin-top: 0.5rem;">Passwords must match</p>
+            </div>
+            <!-- @if (error) {
+            <span class="alert alert-danger mt-3 mb-1" style="max-width: 300px; display: inline-block;">{{error}}</span>
+        } -->
 
-    <input
-      name="email"
-      [(ngModel)]="email"
-      #emailModel="ngModel"
-      required
-      email
-      maxlength="255"
-      type="email"
-      placeholder="Email"
-    />
-    <p [hidden]="emailModel.valid || !formTouched">Valid email is required</p>
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+          </form>
+        </div>
 
-    <input
-      name="password"
-      [(ngModel)]="password"
-      #passwordModel="ngModel"
-      required
-      minlength="8"
-      type="password"
-      placeholder="Password"
-    />
-    <p [hidden]="passwordModel.valid || !formTouched">Minimum 8 characters</p>
+        <div class="login-right">
+          <h3>Already have an account?</h3>
+          <a  class="btn btn-outline-primary" [routerLink]="['/login']">Login</a>
 
-    <input
-      name="confirm_password"
-      [(ngModel)]="confirm_password"
-      #confirmPasswordModel="ngModel"
-      required
-      type="password"
-      placeholder="Confirm Password"
-    />
-    <p [hidden]="password === confirm_password || !formTouched">Passwords must match</p>
 
-    <button type="submit">Register</button>
-  </form>
-
-  <div class="error-box" [hidden]="serverErrors.length === 0">
-    <p *ngFor="let error of serverErrors">{{ error }}</p>
+          <div class="social-login">
+            <p>Or sign in with</p>
+            <div class="social-icons">
+              <a href="#"><i class="zmdi zmdi-facebook"></i></a>
+              <a href="#"><i class="zmdi zmdi-google"></i></a>
+              <a href="#"><i class="zmdi zmdi-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
