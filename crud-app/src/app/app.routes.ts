@@ -16,6 +16,6 @@ export const routes: Routes = [
     { path : 'post/:postId', component: Show ,canActivate: [AuthGuard]},
     { path : 'register', component: RegisterComponent},
     { path : 'login', component : LoginComponent},
-    { path: '', component:LandingComponent ,canActivate: [AuthGuard] }
+    { path: '', component:LandingComponent  }
 
 ];

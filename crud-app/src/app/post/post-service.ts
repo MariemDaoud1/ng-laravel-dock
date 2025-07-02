@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Post } from './post';
 
 @Injectable({
@@ -16,7 +16,11 @@ export class PostService {
   }
 
   createPosts(data: Post): Observable<Post>{
-    return this.http.post<Post>(this.apiURL,data);}
+    return this.http.post<{data: Post}>(this.apiURL, data).pipe(
+      // Extract the 'data' property from the response
+      map(response => response.data)
+    );
+  }
 
 
   findPostById(id: number): Observable<Post> {

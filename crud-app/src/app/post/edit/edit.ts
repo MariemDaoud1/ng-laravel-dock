@@ -31,27 +31,27 @@ export class Edit {
     });
   }
 
-  submit(){
-    if (!this.title || !this.description) {
-      this.error = 'Title and description are required!';
-      return;
-    }
-    const input = {
-      Title: this.title,
-      description: this.description,
-      image: this.image // Include the image URL if available
-    }
-    this.postService.updatePost(Number(this.id), input).subscribe(result => {
-      alert('Post updated successfully!');
-      this.router.navigate(['post']);
-    }, error => {
-      alert('Failed to update post. Please try again.');
-      this.error = 'Failed to update post. Please try again.';
+   onSubmit(){}
+  //   if (!this.title || !this.description) {
+  //     this.error = 'Title and description are required!';
+  //     return;
+  //   }
+  //   const input = {
+  //     Title: this.title,
+  //     description: this.description,
+  //     image: this.image // Include the image URL if available
+  //   }
+  //   this.postService.updatePost(Number(this.id), input).subscribe(result => {
+  //     alert('Post updated successfully!');
+  //     this.router.navigate(['post']);
+  //   }, error => {
+  //     alert('Failed to update post. Please try again.');
+  //     this.error = 'Failed to update post. Please try again.';
    
 
-  })
+  // })
     
-  }
+  // }
 
    onFileSelected(event: Event,postId: number) {
     const input = event.target as HTMLInputElement;
@@ -60,12 +60,34 @@ export class Edit {
       this.uploadPostId=postId;
     }
   }
-  onSubmit() {
-    if (!this.selectedFile || this.uploadPostId === null) {
-      alert('Please select a file and a post to upload.');
-      return;
-    }
 
+
+  submit() {
+  this.error = '';
+
+  // Step 1: Validate title & description
+  if (!this.title || !this.description) {
+    this.error = 'Title and description are required!';
+    return;
+  }
+
+  // Step 2: Update post data (title, description, image)
+  const input = {
+    Title: this.title,
+    description: this.description,
+    image: this.image
+  };
+
+  this.postService.updatePost(Number(this.id), input).subscribe(result => {
+    alert('Post updated successfully!');
+    this.router.navigate(['post']);
+  }, error => {
+    alert('Failed to update post. Please try again.');
+    this.error = 'Failed to update post. Please try again.';
+  });
+
+  // Step 3: Upload image if selected
+  if (this.selectedFile && this.uploadPostId !== null) {
     const formData = new FormData();
     formData.append('image', this.selectedFile);
     formData.append('id', this.uploadPostId.toString());
@@ -74,10 +96,10 @@ export class Edit {
       (response) => {
         const updatedPost = this.posts.find(p => p.id === this.uploadPostId);
         if (updatedPost && response?.data?.image_url) {
-        updatedPost.image = response.data.image_url;
+          updatedPost.image = response.data.image_url;
         }
-        this.selectedFile = null; // Reset the selected file
-        this.uploadPostId = null; // Reset the post ID
+        this.selectedFile = null;
+        this.uploadPostId = null;
         window.location.reload();
         alert('Image uploaded successfully!');
       },
@@ -87,6 +109,8 @@ export class Edit {
       }
     );
   }
+}
+
   
 
 }
