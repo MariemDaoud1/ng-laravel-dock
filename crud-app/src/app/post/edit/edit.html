@@ -4,6 +4,12 @@
     <div class="mb-3">
       <a class="btn btn-success" [routerLink]="['/post']">← Back</a>
     </div>
+    <div [hidden]="!notificationMessage"
+     [ngClass]="{'alert-success': notificationType === 'success', 'alert-danger': notificationType === 'error'}" 
+     class="alert" role="alert" style="margin-bottom: 1rem;">
+  {{ notificationMessage }}
+</div>
+
 
       <div class="mb-3">
         <label for="title" class="form-label">Asset:</label>

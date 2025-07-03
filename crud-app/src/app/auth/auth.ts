@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,9 @@ export class Auth {
   localStorage.removeItem('user'); // Optional
 }
 
-  getUser(): Observable<any> {
-  return this.http.get(`${this.apiURL}/user`, {
+  getUser(): Observable<User> {
+  return this.http.get<User>(`${this.apiURL}/user`, {
+    withCredentials: true,
     headers: {
       Authorization: `Bearer ${this.getToken()}`
     }

@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PostService } from '../post-service';
 import { Post } from '../post';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-edit',
-  imports: [RouterModule,FormsModule],
+  imports: [RouterModule,FormsModule,CommonModule],
   templateUrl: './edit.html',
   styleUrl: './edit.css'
 })
@@ -19,6 +20,8 @@ export class Edit {
   selectedFile: File | null = null;
   uploadPostId: number | null = null;
   posts:Post[]=[];
+  notificationMessage = '';
+notificationType: 'success' | 'error' | '' = '';
 
   constructor(private postService: PostService, private router: Router,private route: ActivatedRoute) {}
 
@@ -30,28 +33,19 @@ export class Edit {
       this.image = post.image ?? ''; // Assuming the Post model has an 'image' property
     });
   }
+  showNotification(message: string, type: 'success' | 'error') {
+  this.notificationMessage = message;
+  this.notificationType = type;
 
-   onSubmit(){}
-  //   if (!this.title || !this.description) {
-  //     this.error = 'Title and description are required!';
-  //     return;
-  //   }
-  //   const input = {
-  //     Title: this.title,
-  //     description: this.description,
-  //     image: this.image // Include the image URL if available
-  //   }
-  //   this.postService.updatePost(Number(this.id), input).subscribe(result => {
-  //     alert('Post updated successfully!');
-  //     this.router.navigate(['post']);
-  //   }, error => {
-  //     alert('Failed to update post. Please try again.');
-  //     this.error = 'Failed to update post. Please try again.';
-   
+  // Automatically clear notification after 4 seconds
+  setTimeout(() => {
+    this.notificationMessage = '';
+    this.notificationType = '';
+  }, 4000);
+}
 
-  // })
-    
-  // }
+
+  
 
    onFileSelected(event: Event,postId: number) {
     const input = event.target as HTMLInputElement;
@@ -65,13 +59,11 @@ export class Edit {
   submit() {
   this.error = '';
 
-  // Step 1: Validate title & description
   if (!this.title || !this.description) {
     this.error = 'Title and description are required!';
     return;
   }
 
-  // Step 2: Update post data (title, description, image)
   const input = {
     Title: this.title,
     description: this.description,
@@ -79,14 +71,13 @@ export class Edit {
   };
 
   this.postService.updatePost(Number(this.id), input).subscribe(result => {
-    alert('Post updated successfully!');
+    this.showNotification('Post updated successfully!', 'success');
     this.router.navigate(['post']);
   }, error => {
-    alert('Failed to update post. Please try again.');
+    this.showNotification('Failed to update post. Please try again.', 'error');
     this.error = 'Failed to update post. Please try again.';
   });
 
-  // Step 3: Upload image if selected
   if (this.selectedFile && this.uploadPostId !== null) {
     const formData = new FormData();
     formData.append('image', this.selectedFile);
@@ -101,15 +92,16 @@ export class Edit {
         this.selectedFile = null;
         this.uploadPostId = null;
         window.location.reload();
-        alert('Image uploaded successfully!');
+        this.showNotification('Image uploaded successfully!', 'success');
       },
       (error) => {
         console.error('Error uploading image:', error);
-        alert('Failed to upload image. Please try again.');
+        this.showNotification('Failed to upload image. Please try again.', 'error');
       }
     );
   }
 }
+
 
   
 

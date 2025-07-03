@@ -1,80 +1,111 @@
-/* Container spacing */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  background-color: #3f65cc;  /* path relative to /src/assets/ */
-  background-size: cover;       /* cover entire container */
-  background-position: center;  /* center image */
-  background-repeat: no-repeat;
-  padding: 3rem;                /* add padding so content is not on edges */
-  border-radius: 1rem;          /* round container corners */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* subtle shadow */
-  color: #fff;                  /* white text for contrast */
+/* Container section */
+section.container.py-5 {
+  background-color: #1e293b; /* dark slate background */
+  color: white;
+  padding-top: 10rem;
+  padding-bottom: 3rem;
+  max-width: 1000px;
+  max-height: 600px;
 }
 
-
-/* Card style */
-.card {
-  background: #ffffff;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-}
-
-/* Form Labels */
-.form-label {
-  font-weight: 600;
-  color: #333;
-}
-
-/* Inputs and Textareas */
-.form-control {
-  border-radius: 0.75rem;
-  border: 1px solid #dcdcdc;
-  box-shadow: none;
-  transition: border 0.3s ease;
-  padding: 0.75rem 1rem;
-}
-
-.form-control:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 0.15rem rgba(37, 99, 235, 0.15);
-}
-
-/* Submit Button */
-.btn-primary {
-  background-color: #2563eb;
-  border-color: #2563eb;
-  border-radius: 999px;
-  font-weight: 500;
-}
-
-.btn-primary:hover {
-  background-color: #1d4ed8;
-  border-color: #1d4ed8;
-}
-
-/* Outline Button (Back) */
-.btn-outline-primary {
-  border-color: #2563eb;
-  color: #2563eb;
-  border-radius: 999px;
-  font-weight: 500;
-}
-
-.btn-outline-primary:hover {
-  background-color: #2563eb;
+/* Card with shadow and rounded corners */
+section.container .card {
+  background-color: #1e293b;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 20px 30px;
   color: white;
 }
 
-/* Error alert */
-.alert-danger {
-  border-radius: 0.75rem;
-  font-size: 0.95rem;
-  padding: 0.75rem 1rem;
+/* Heading and back button container */
+section.container .d-flex.justify-content-between {
+  margin-bottom: 1.5rem;
 }
 
-/* Button icon spacing */
-.btn i {
-  margin-right: 6px;
+section.container h2.mb-0 {
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: white;
+}
+
+section.container a.btn-outline-primary {
+  color: #3b82f6;
+  border-color: #3b82f6;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+section.container a.btn-outline-primary:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* Labels */
+section.container label.form-label {
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+/* Inputs and textarea */
+section.container input.form-control,
+section.container textarea.form-control {
+  background-color: #334155;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+section.container input.form-control::placeholder,
+section.container textarea.form-control::placeholder {
+  color: #94a3b8;
+}
+
+section.container input.form-control:focus,
+section.container textarea.form-control:focus {
+  background-color: #475569;
+  outline: none;
+  box-shadow: 0 0 5px #3b82f6;
+}
+
+/* File input */
+section.container input[type="file"].form-control {
+  padding: 6px 10px;
+}
+
+/* Buttons */
+section.container button.btn-primary {
+  background-color: #3b82f6;
+  border: none;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 10px 25px;
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.5);
+  transition: opacity 0.3s ease;
+}
+
+section.container button.btn-primary:hover {
+  opacity: 0.9;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.7);
+}
+
+/* Alert error styling */
+section.container .alert-danger {
+  background-color: #ef4444;
+  color: white;
+  border-radius: 8px;
+  margin-top: 1rem;
+  padding: 10px 15px;
+}
+
+/* Image preview (if you add it later) */
+section.container img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  object-fit: cover;
 }
