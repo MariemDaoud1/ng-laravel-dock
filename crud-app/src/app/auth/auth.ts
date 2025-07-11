@@ -1,27 +1,28 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Auth {
-  private apiURL ="http://localhost:8000/api";
-  private tokenkey='auth_token';
+  private apiURL = environment.apiUrl;
+  private tokenKey = 'auth_token';
 
   constructor(private http: HttpClient) {}
 
-  getAuthHeaders() {
-  return {
-    Authorization: `Bearer ${this.getToken()}`
-  };
-}
-  
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.getToken();
+    return new HttpHeaders({
+      Authorization: token ? `Bearer ${token}` : ''
+    });
+  }
+
   CreateUser(user: any): Observable<any> {
     return this.http.post(`${this.apiURL}/register`, user);
   }
-
 
   UserRegister(user: any): Observable<any> {
     return this.http.post(`${this.apiURL}/register`, user);
@@ -31,33 +32,31 @@ export class Auth {
     return this.http.post(`${this.apiURL}/login`, user);
   }
 
-  UserLogout() {
-  this.removeToken(); // Correctly removes 'auth_token'
-  localStorage.removeItem('user'); // Optional
-}
+  UserLogout(): void {
+    this.removeToken();
+    localStorage.removeItem('user'); // Optional, if you store user info
+  }
 
   getUser(): Observable<User> {
-  return this.http.get<User>(`${this.apiURL}/user`, {
-    withCredentials: true,
-    headers: {
-      Authorization: `Bearer ${this.getToken()}`
-    }
-  });
-}
+    return this.http.get<User>(`${this.apiURL}/user`, {
+      headers: this.getAuthHeaders()
+      // No withCredentials here because no cookie/session auth
+    });
+  }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenkey);
+    return localStorage.getItem(this.tokenKey);
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.tokenkey, token);}
+    localStorage.setItem(this.tokenKey, token);
+  }
 
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
 
   removeToken(): void {
-    localStorage.removeItem(this.tokenkey);
+    localStorage.removeItem(this.tokenKey);
   }
-
 }

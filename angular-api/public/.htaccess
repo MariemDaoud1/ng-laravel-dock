@@ -3,31 +3,55 @@
         Options -MultiViews -Indexes
     </IfModule>
 
-    <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteCond %{REQUEST_URI} !^/storage/
-    RewriteRule ^ index.php [L]
-</IfModule>
-
-
-    RewriteEngine On
-
-    # Handle Authorization Header
+    # ✅ Ensure Authorization header is passed to PHP
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Handle X-XSRF-Token Header
-    RewriteCond %{HTTP:x-xsrf-token} .
-    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+    # ✅ Ensure X-XSRF-TOKEN is passed (optional, used for cookies + CSRF)
+    RewriteCond %{HTTP:X-XSRF-TOKEN} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-TOKEN}]
 
-    # Redirect Trailing Slashes If Not A Folder...
+    # Redirect trailing slashes (except directories)
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # ✅ Bypass rewrite for /storage/ (useful for public asset access)
+    RewriteCond %{REQUEST_URI} !^/storage/
+
+    # ✅ Laravel Front Controller routing
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # ✅ Ensure Authorization header is passed to PHP
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # ✅ Ensure X-XSRF-TOKEN is passed (optional, used for cookies + CSRF)
+    RewriteCond %{HTTP:X-XSRF-TOKEN} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-TOKEN}]
+
+    # Redirect trailing slashes (except directories)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # ✅ Bypass rewrite for /storage/ (useful for public asset access)
+    RewriteCond %{REQUEST_URI} !^/storage/
+
+    # ✅ Laravel Front Controller routing
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+

@@ -55,8 +55,8 @@ class PostController extends Controller
     {
         // Return only posts belonging to the authenticated user
         $posts = $request->user()->posts()->get()->map(function ($post) {
-            $imagePath = $post->image ? asset('storage/' . $post->image) : null;
-            return [
+             $imagePath = $post->image ? asset('storage/' . $post->image) : null;
+             return [
                 'id' => $post->id,
                 'Title' => $post->Title,
                 'description' => $post->description,

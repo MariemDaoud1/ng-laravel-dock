@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./angular-api
+      dockerfile: Dockerfile
+    container_name: crud-backend-container
+    ports:
+      - "8100:80"
+    volumes:
+      - ./angular-api/public:/var/www/html/public
+    depends_on:
+      - mysql
+    networks:
+      - crudnet
+
+  frontend:
+    build:
+      context: ./crud-app
+      dockerfile: Dockerfile
+    container_name: crud-frontend-container
+    ports:
+      - "8101:80"
+    depends_on:
+      - backend
+    networks:
+      - crudnet
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-crud-container
+    environment:
+      - MYSQL_ROOT_PASSWORD=root123
+      - MYSQL_DATABASE=angular_api
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - crudnet
+
+volumes:
+  mysql-data:
+
+networks:
+  crudnet:

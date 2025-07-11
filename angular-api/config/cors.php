@@ -7,7 +7,7 @@ return [
     'allowed_methods' => ['*'],
 
     // Pour Angular
-    'allowed_origins' => ['http://localhost:4200'],
+    'allowed_origins' => ['http://localhost:8101'],
 
     'allowed_origins_patterns' => [],
 
@@ -17,6 +17,6 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => true,
+    'supports_credentials' => false,
 
 ];
