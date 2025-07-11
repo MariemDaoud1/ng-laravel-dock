@@ -6,7 +6,6 @@ return [
 
     'allowed_methods' => ['*'],
 
-    // Pour Angular
     'allowed_origins' => ['http://localhost:8101'],
 
     'allowed_origins_patterns' => [],
